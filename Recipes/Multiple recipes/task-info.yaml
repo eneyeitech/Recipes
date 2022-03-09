@@ -193,6 +193,167 @@ files:
         }
     }
   learner_created: false
+- name: src/recipes/database/Store.java
+  visible: true
+  text: |
+    package recipes.database;
+
+    import recipes.business.Recipe;
+
+    import java.util.ArrayList;
+    import java.util.Collection;
+    import java.util.HashMap;
+    import java.util.Map;
+    import java.util.concurrent.ConcurrentHashMap;
+
+    public class Store {
+
+        private Map<Long, Recipe> recipes;
+        private static Store instance;
+
+        private Store() {
+            recipes = new ConcurrentHashMap<>();
+        }
+
+        public static Store getInstance() {
+            if (instance == null) {
+                instance = new Store();
+            }
+            return instance;
+        }
+
+        public Recipe addRecipe(Recipe newRecipe){
+            recipes.put(newRecipe.getId(), newRecipe);
+            return newRecipe;
+        }
+
+        public Recipe getRecipe(long id){
+            return recipes.get(id);
+        }
+
+        public Collection<Recipe> getAllRecipes() {
+            Collection<Recipe> list =  recipes.values();
+            return list;
+        }
+    }
+  learner_created: true
+- name: src/recipes/presentation/RecipeController.java
+  visible: true
+  text: |
+    package recipes.presentation;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.web.bind.annotation.*;
+    import recipes.business.Recipe;
+    import recipes.business.RecipeService;
+
+    @RestController
+    public class RecipeController {
+
+        @Autowired
+        RecipeService recipeService;
+
+        @PostMapping("/api/recipe/new")
+        public Object addRecipe(@RequestBody Recipe recipe) {
+            return recipeService.add(recipe);
+        }
+
+        @GetMapping("/api/recipe/{id}")
+        public Object getRecipe(@PathVariable long id) {
+            return recipeService.get(id);
+        }
+
+    }
+  learner_created: true
+- name: src/recipes/persistence/RecipeRepository.java
+  visible: true
+  text: |
+    package recipes.persistence;
+
+    import org.springframework.stereotype.Repository;
+    import recipes.business.Recipe;
+    import recipes.database.Store;
+
+    @Repository
+    public class RecipeRepository {
+        private Store store = Store.getInstance();
+
+        public Recipe add(Recipe newRecipe){
+            return store.addRecipe(newRecipe);
+        }
+
+        public Recipe get(long id){
+            return store.getRecipe(id);
+        }
+    }
+  learner_created: true
+- name: src/recipes/business/Recipe.java
+  visible: true
+  text: |
+    package recipes.business;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import java.util.ArrayList;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Recipe {
+        private long id;
+        private String name;
+        private String description;
+        private ArrayList<String> ingredients;
+        private ArrayList<String> directions;
+    }
+  learner_created: true
+- name: src/recipes/helper/IDGenerator.java
+  visible: true
+  text: |
+    package recipes.helper;
+
+    public class IDGenerator {
+
+        private static long id = 0;
+
+        public static long getId() {
+                return ++id;
+            }
+    }
+  learner_created: true
+- name: src/recipes/business/RecipeService.java
+  visible: true
+  text: |
+    package recipes.business;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Service;
+    import recipes.persistence.RecipeRepository;
+
+    @Service
+    public class RecipeService {
+
+        private final RecipeRepository recipeRepository;
+
+        @Autowired
+        public RecipeService(RecipeRepository recipeRepository) {
+            this.recipeRepository = recipeRepository;
+        }
+
+        public Recipe add(Recipe newRecipe){
+            return recipeRepository.add(newRecipe);
+        }
+
+        public Recipe get(long id){
+            return recipeRepository.get(id);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/13089#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 09 Mar 2022 17:44:45 UTC
 record: -1
