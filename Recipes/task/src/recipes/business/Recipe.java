@@ -50,6 +50,10 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private List<Direction> directionList = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public void addIngredient(Ingredient ingredientToAdd) {
         ingredientList.add(ingredientToAdd);
     }
