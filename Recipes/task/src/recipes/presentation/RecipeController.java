@@ -34,7 +34,9 @@ public class RecipeController {
         return new ResponseEntity<>(Map.of(
                 //"id", recipe.getId(),
                 "name", recipe.getName(),
+                "category", recipe.getCategory(),
                 "description", recipe.getDescription(),
+                "date", recipe.getDate(),
                 "directions",recipe.getDirections(),
                 "ingredients",recipe.getIngredients()
         ), HttpStatus.OK);
@@ -51,6 +53,38 @@ public class RecipeController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/api/recipe/{id}")
+    public Object modifyRecipe(@Valid @RequestBody Recipe recipe, @PathVariable long id) {
+        Recipe searchedRecipe = recipeService.get(id);
+        if(searchedRecipe == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        recipe.setId(id);
+        recipeService.update(recipe, searchedRecipe);
+        //return recipe.getId();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/api/recipe/search")
+    public Object searchRecipe(@RequestParam(defaultValue = "") String category,
+                               @RequestParam(defaultValue = "") String name) {
+        if (!category.isEmpty() && !name.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (category.isEmpty() && name.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (!category.isEmpty()) {
+            return recipeService.convert(true, category);
+        }
+
+        if (!name.isEmpty()) {
+            return recipeService.convert(false, name);
+        }
+
+        return  name;
     }
 
 }

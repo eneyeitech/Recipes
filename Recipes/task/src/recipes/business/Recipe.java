@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -25,6 +28,14 @@ public class Recipe {
     private String name;
     @NotBlank
     private String description;
+    @NotBlank
+    private String category;
+
+    @Column(nullable = true, updatable = true, name = "created_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    @LastModifiedDate
+    private Date date;
 
 
     @Size(min = 1)
@@ -53,5 +64,15 @@ public class Recipe {
 
     public void addDirection(String dir) {
         directions.add(dir);
+    }
+
+    @PrePersist
+    private void onCreate() {
+        date = new Date();
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        date = new Date();
     }
 }
