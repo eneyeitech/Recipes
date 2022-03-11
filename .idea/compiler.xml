@@ -8,22 +8,38 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
         </processorPath>
-        <module name="Recipes.Recipes-task-build-classes-java.main" />
+        <module name="Recipes.Topics-Builder-Geek_Builder.main" />
+        <module name="Recipes.Topics-Builder-Theory.main" />
         <module name="Recipes.Recipes-task-build-reports-tests.test" />
-        <module name="Recipes.Recipes-task.test" />
-        <module name="Recipes.Recipes-task-build-generated-sources-headers-java.main" />
         <module name="Recipes.Recipes-task-build-generated-sources-annotationProcessor-java.test" />
         <module name="Recipes.Recipes-task-build-tmp.test" />
         <module name="Recipes.Recipes-task-build-classes-java.test" />
+        <module name="Recipes.Topics-Builder-Builder.test" />
+        <module name="Recipes.Topics-Builder-Robot_Builder.test" />
+        <module name="Recipes.Topics-Builder-Disadvantage_of_Builder_pattern.main" />
+        <module name="Recipes.Recipes-task-build-tmp.main" />
+        <module name="Recipes.Recipes-task-build-generated-sources-headers-java.test" />
+        <module name="Recipes.Topics-Builder-Describe_the_builder.test" />
+        <module name="Recipes.Recipes-task.main" />
+        <module name="Recipes.Topics-Builder-Subway_Sandwich.test" />
+        <module name="Recipes.Recipes-task-build-test-results.test" />
+        <module name="Recipes.util.main" />
+        <module name="Recipes.Recipes-task-build-classes-java.main" />
+        <module name="Recipes.Recipes-task.test" />
+        <module name="Recipes.Recipes-task-build-generated-sources-headers-java.main" />
+        <module name="Recipes.Topics-Builder-Disadvantage_of_Builder_pattern.test" />
+        <module name="Recipes.Topics-Builder-Builder__1_.test" />
+        <module name="Recipes.Topics-Builder-Robot_Builder.main" />
+        <module name="Recipes.Topics-Builder-Builder__1_.main" />
         <module name="Recipes.Recipes-task-build-reports-tests.main" />
         <module name="Recipes.Recipes-task-build-generated-sources-annotationProcessor-java.main" />
         <module name="Recipes.util.test" />
-        <module name="Recipes.Recipes-task-build-tmp.main" />
-        <module name="Recipes.Recipes-task-build-generated-sources-headers-java.test" />
+        <module name="Recipes.Topics-Builder-Describe_the_builder.main" />
+        <module name="Recipes.Topics-Builder-Subway_Sandwich.main" />
         <module name="Recipes.Recipes-task-build-test-results.main" />
-        <module name="Recipes.Recipes-task.main" />
-        <module name="Recipes.Recipes-task-build-test-results.test" />
-        <module name="Recipes.util.main" />
+        <module name="Recipes.Topics-Builder-Geek_Builder.test" />
+        <module name="Recipes.Topics-Builder-Builder.main" />
+        <module name="Recipes.Topics-Builder-Theory.test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
@@ -34,6 +50,14 @@
       <module name="Recipes.Recipes-task-build-test-results.main" target="11" />
       <module name="Recipes.Recipes-task-build-tmp.main" target="11" />
       <module name="Recipes.Recipes-task.main" target="11" />
+      <module name="Recipes.Topics-Builder-Builder.main" target="11" />
+      <module name="Recipes.Topics-Builder-Builder__1_.main" target="11" />
+      <module name="Recipes.Topics-Builder-Describe_the_builder.main" target="11" />
+      <module name="Recipes.Topics-Builder-Disadvantage_of_Builder_pattern.main" target="11" />
+      <module name="Recipes.Topics-Builder-Geek_Builder.main" target="11" />
+      <module name="Recipes.Topics-Builder-Robot_Builder.main" target="11" />
+      <module name="Recipes.Topics-Builder-Subway_Sandwich.main" target="11" />
+      <module name="Recipes.Topics-Builder-Theory.main" target="11" />
       <module name="Recipes.util.main" target="11" />
     </bytecodeTargetLevel>
   </component>
